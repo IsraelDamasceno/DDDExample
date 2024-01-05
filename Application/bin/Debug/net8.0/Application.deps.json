@@ -68,7 +68,16 @@
           "Domain.dll": {}
         }
       },
+      "Infrastructure/1.0.0": {
+        "runtime": {
+          "Infrastructure.dll": {}
+        }
+      },
       "Service/1.0.0": {
+        "dependencies": {
+          "Domain": "1.0.0",
+          "Infrastructure": "1.0.0"
+        },
         "runtime": {
           "Service.dll": {}
         }
@@ -124,6 +133,11 @@
       "hashPath": "swashbuckle.aspnetcore.swaggerui.6.4.0.nupkg.sha512"
     },
     "Domain/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Infrastructure/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

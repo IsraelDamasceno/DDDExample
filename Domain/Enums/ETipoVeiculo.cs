@@ -11,5 +11,6 @@ namespace Domain.Enums
         SUV = 1,
         Sedan = 2,
         Hatch  = 3,
+        Utilitario = 4
     }
 }
