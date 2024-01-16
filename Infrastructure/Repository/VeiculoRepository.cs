@@ -36,6 +36,17 @@ namespace Infrastructure.Repository
         {
 
         }
+
+        public async Task<IEnumerable<VeiculoCommand>> GetVeiculosDisponiveis()
+        {
+            string queryBuscarVeiculosDisponiveis = @"
+               SELECT * FROM Veiculo WHERE ALUGADO = 0";
+            using (SqlConnection conn = new SqlConnection(conexao))
+            {
+                return conn.QueryAsync<VeiculoCommand>(
+                    queryBuscarVeiculosDisponiveis).Result.ToList();
+            }
+        }
     }
 }
 
