@@ -1,5 +1,6 @@
 ﻿using Dapper;
 using Domain.Commands;
+using Domain.Enums;
 using Domain.Interfaces;
 using System.Data.SqlClient;
 
@@ -45,6 +46,19 @@ namespace Infrastructure.Repository
             {
                 return conn.QueryAsync<VeiculoCommand>(
                     queryBuscarVeiculosDisponiveis).Result.ToList();
+            }
+        }
+        public async Task<VeiculoPrecoCommand> GetPrecoDiaria(ETipoVeiculo tipoVeiculo)
+        {
+            string queryGetPrecoDiaria = @"SELECT * FROM VeiculoPreco
+                                           WHERE TIPOVEICULO = @TIPOVEICULO";
+
+            using(SqlConnection conn = new SqlConnection(conexao))
+            {
+                return conn.QueryAsync<VeiculoPrecoCommand>(queryGetPrecoDiaria, new { 
+                    TipoVeiculo = tipoVeiculo 
+                }).Result.FirstOrDefault();
+
             }
         }
     }
