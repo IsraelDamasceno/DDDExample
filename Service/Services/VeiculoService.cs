@@ -35,7 +35,7 @@ namespace Service.Services
             )
                 return "O Tipo de Veículo não pe permitido";
 
-            return  await _repository.PostAsync(command);
+            return await _repository.PostAsync(command);
         }
 
         public void PostAsync()
@@ -60,8 +60,32 @@ namespace Service.Services
             simulacao.TipoVeiculo = tipoVeiculo;
             simulacao.ValorDiaria = veiculoPreco.Preco;
             simulacao.ValorTotal = (totalDiasSimulado * veiculoPreco.Preco) + simulacao.Taxas;
-        
-          return simulacao;
+
+            return simulacao;
+        }
+
+        public async Task AlugarVeiculo(AlugarVeiculoViewModelInput input)
+        {
+
+            var veiculoAlugado = await VeiculoEstaAlugado(input.PlacaVeiculo);
+            if (veiculoAlugado)
+            {
+               // "Este Veículo não está mais disponível para alugar";
+            }
+            //Todo
+            //chamar método para datas
+
+            //Todo
+            //chamar método para validar cartão
+
+            //Todo
+            //chamar método para validar habilitação
+
+        }
+
+        private Task<bool> VeiculoEstaAlugado(string placaVeiculo)
+        {
+            return _repository.VeiculoEstaAlugado(placaVeiculo);
         }
     }
 }

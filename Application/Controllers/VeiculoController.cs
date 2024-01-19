@@ -1,6 +1,7 @@
 ﻿using Domain.Commands;
 using Domain.Enums;
 using Domain.Interfaces;
+using Domain.ViewModel;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -13,7 +14,7 @@ namespace Application.Controllers
         private readonly IVeiculoService _veiculoService;
         public VeiculoController(IVeiculoService veiculoService)
         {
-           _veiculoService = veiculoService;
+            _veiculoService = veiculoService;
         }
         #region Post
         [HttpPost]
@@ -24,17 +25,18 @@ namespace Application.Controllers
         }
         [HttpPost]
         [Route("Alugar")]
-        public IActionResult PostAsync()
+        public async Task<IActionResult> PostAsync([FromBody] AlugarVeiculoViewModelInput input)
         {
+            await _veiculoService.AlugarVeiculo(input);
             return Ok();
         }
         #endregion
 
         [HttpGet]
         [Route("SimularAluguel")]
-        public IActionResult GetAsync(int DiasSimulacaoAluguel, ETipoVeiculo tipoVeiculo) 
+        public async Task<IActionResult> GetAsync(int DiasSimulacaoAluguel, ETipoVeiculo tipoVeiculo)
         {
-            return Ok(_veiculoService.SimularVeiculoAluguel(DiasSimulacaoAluguel, tipoVeiculo));
+            return Ok(await _veiculoService.SimularVeiculoAluguel(DiasSimulacaoAluguel, tipoVeiculo));
         }
         [HttpGet]
         [Route("Veiculos-Disponiveis")]
@@ -42,6 +44,6 @@ namespace Application.Controllers
         {
             return Ok(await _veiculoService.GetVeiculosDisponiveis());
         }
-        
+
     }
 }
