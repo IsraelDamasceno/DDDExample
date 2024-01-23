@@ -1,4 +1,5 @@
-﻿using Domain.Commands;
+﻿using CreditCardValidator;
+using Domain.Commands;
 using Domain.Enums;
 using Domain.Interfaces;
 using Domain.ViewModel;
@@ -67,25 +68,48 @@ namespace Service.Services
         public async Task AlugarVeiculo(AlugarVeiculoViewModelInput input)
         {
 
-            var veiculoAlugado = await VeiculoEstaAlugado(input.PlacaVeiculo);
-            if (veiculoAlugado)
+            //var veiculoAlugado = await VeiculoEstaAlugado(input.PlacaVeiculo);
+            if (await VeiculoEstaAlugado(input.PlacaVeiculo))
             {
-               // "Este Veículo não está mais disponível para alugar";
+                // "Este Veículo não está mais disponível para alugar";
             }
             //Todo
             //chamar método para datas
-
+            if (await ValidarDatas(input.DataDevolucao, input.DataRetirada))
+            {
+                //Erro
+            }
             //Todo
-            //chamar método para validar cartão
+
+            CreditCardDetector detector = new CreditCardDetector(Convert.ToString(input.Cartao.Numero));
+            var bandeira = detector.Brand; // => 4012888888881881
+            if (!detector.IsValid()) // => True
+            {
+                //"Cartão Invalido";
+            }
 
             //Todo
             //chamar método para validar habilitação
 
         }
 
-        private Task<bool> VeiculoEstaAlugado(string placaVeiculo)
+        private async Task<bool> ValidarDatas(DateTime inicio, DateTime fim)
         {
-            return _repository.VeiculoEstaAlugado(placaVeiculo);
+            if (fim < inicio)
+                return false;
+            else if (fim == inicio)
+                return false;
+            else if (fim < DateTime.Now)
+                return false;
+            else if (inicio < DateTime.Now)
+                return false;
+            else
+                return true;
+        }
+
+        private async Task<bool> VeiculoEstaAlugado(string placaVeiculo)
+        {
+            return await _repository.VeiculoEstaAlugado(placaVeiculo);
         }
     }
 }

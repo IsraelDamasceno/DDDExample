@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "MT9KWu0uI7Hr8Xwsz0GMWMEkLLnQ6ppZSygHKqfYfP9fFfXz9+bd9RDtOxmkm8ntapjAjOnRn34Rcwl7fZny9w==",
+  "dgSpecHash": "CTceqfNNIwgKWp+qrw3H9VCDZiAexalWWluwDF7pv59tELUgI1bNKCa5GnjDZbvTNS7JwTKcQ09XA8SqAVRN/A==",
   "success": true,
   "projectFilePath": "C:\\Users\\israel.mdamasceno\\source\\repos\\Application\\Service\\Service.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\israel.mdamasceno\\.nuget\\packages\\creditcardvalidator\\3.0.1\\creditcardvalidator.3.0.1.nupkg.sha512",
     "C:\\Users\\israel.mdamasceno\\.nuget\\packages\\dapper\\2.1.28\\dapper.2.1.28.nupkg.sha512",
     "C:\\Users\\israel.mdamasceno\\.nuget\\packages\\microsoft.netcore.platforms\\3.1.0\\microsoft.netcore.platforms.3.1.0.nupkg.sha512",
     "C:\\Users\\israel.mdamasceno\\.nuget\\packages\\microsoft.win32.registry\\4.7.0\\microsoft.win32.registry.4.7.0.nupkg.sha512",
