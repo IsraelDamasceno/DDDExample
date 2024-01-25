@@ -1,0 +1,27 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+    margin: 0;
+    padding: 0;
+}
+
+.container{
+    max-width: 1200px;
+    margin: 0 auto;
+}
+ nav {
+     background-color: #007bff;
+     padding: 15px 0;
+     text-align: center;
+ }
+
+    nav a {
+        text-decoration: none;
+        color: #ffffff;
+        font-size: 18PX;
+        margin: 0 15PX;
+    }
+     
+     nav a:hover{
+         color: #f8f9fa;
+     }
